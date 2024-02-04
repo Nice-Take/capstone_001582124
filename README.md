@@ -22,5 +22,7 @@ in the 'Docs' folder.
 
 If you are looking to run a copy on your localhost, please find
 the necessary files inside the 'Dist' folder.
+UN: guest
+PW: guest
 
 Thank you!
