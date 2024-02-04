@@ -1,0 +1,278 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Salary Estimator</title>
+    <!-- Include HTMX -->
+    <script src="https://unpkg.com/htmx.org"></script>
+    <style>
+            body {
+                font-family: Arial, sans-serif;
+                font-size: 14px;
+            }
+            h1 {
+                font-size: 20px;
+                margin-left: 10px;
+                margin-top: 3%;
+            }
+            h4 {
+                font-size: 13px; 
+                margin-bottom: 4px;
+            }
+            select {
+                margin-bottom: 6px;
+            }
+            #getEstimateButton {
+                margin-top: 10px;
+                padding: 8px 16px;
+                background-color: teal;
+                color: white;
+                font-size: 16px;
+                border: none;
+                border-radius: 6px;
+                cursor: pointer;
+            }
+            #getEstimateButton:hover {
+                background-color: lightblue;
+            }
+            #visualizeButton {
+                margin-top: 10px;
+                padding: 8px 16px;
+                background-color: teal;
+                color: white;
+                font-size: 16px;
+                border: none;
+                border-radius: 6px;
+                cursor: pointer;
+            }
+            #visualizeButton:hover {
+                background-color: lightblue;
+            }
+            #visualizationArea {
+                    display: flex;
+                    justify-content: center; /* Align items horizontally at the center */
+                    align-items: center; /* Align items vertically at the center */
+                    flex-wrap: wrap; /* Allow items to wrap to a new line if needed */
+                    margin-top: 20px;
+                    padding: 10px;
+                    border: 1px solid #ddd;
+            #visualizationArea img {
+                width: 30%;
+                margin: 5px; /* Optional: adds space between images */
+                display: block; /* Ensures the img tag behaves as expected in flexbox */
+            }
+    </style>
+</head>
+<body>
+
+<div id="loginArea">
+    <h2>Login</h2>
+    <input type="text" id="userName" placeholder="Username">
+    <input type="password" id="passCode" placeholder="Password">
+    <button id="loginButton">Login</button>
+</div>
+
+<div id="appContent" style ="display: none;">
+
+    <h1>Select Fields & View the Prediction!</h1>
+<!-- Dropdowns -->
+<div id="Dropdowns" style="margin-top: 20px; padding: 10px; border: 1px solid #ddd;">
+    <div>
+        <h4>Year</h4>
+        <select id="workYearDropdown"></select>
+    </div>
+    <!-- don't need this for now
+    <div>
+        <h4>Title</h4>
+        <select id="jobTitleDropdown"></select>
+    </div>
+    -->
+    <div>
+        <h4>Category</h4>
+        <select id="jobCategoryDropdown"></select>
+    </div>
+    <div>
+        <h4>Employee Residence</h4>
+        <select id="employeeResidenceDropdown"></select>
+    </div>
+    <div>
+        <h4>Experience Level</h4>
+        <select id="experienceLevelDropdown"></select>
+    </div>
+    <div>
+        <h4>Employment Type</h4>
+        <select id="employmentTypeDropdown"></select>
+    </div>
+    <div>
+        <h4>Work Setting</h4>
+        <select id="workSettingDropdown"></select>
+    </div>
+    <div>
+        <h4>Company Location</h4>
+        <select id="companyLocationDropdown"></select>
+    </div>
+    <div>
+        <h4>Company Size</h4>
+        <select id="companySizeDropdown"></select>
+    </div>
+</div>
+
+<!-- Get Estimate Button -->
+<button id="getEstimateButton">Get Estimate</button>
+
+<!-- Response Area -->
+<div id="responseArea" style="margin-top: 20px; padding: 10px; border: 1px solid #ddd;">
+    Estimate will dispay here.
+</div>
+
+<!-- Visualization Areas -->
+<div id="visualizationArea" style="margin-top: 10px; padding: 10px; border: 1px solid #ddd;">
+    <img src="" id="locationVsalaryImage" alt="Location vs Salary Visualization" style="width:30%; display:none;"/>
+    <img src="" id="categoryVusdImage" alt="Category vs USD Visualization" style="width:30%; display:none;"/>
+    <img src="" id="salaryDistribImage" alt="Salary Distribution Visualization" style="width:30%; display:none;"/>
+</div>
+
+<!-- Visualization Button -->
+<button id="visualizeButton" style="margin-top: 10px;">Visualize Prediction</button>
+</div>
+
+<!-- script to load data into dropdowns -->
+<script>
+    window.onload = function() {
+        loadData('workYear', 'workYearDropdown');
+        //loadData('jobTitle', 'jobTitleDropdown');
+        loadData('jobCategory', 'jobCategoryDropdown');
+        loadData('employeeResidence', 'employeeResidenceDropdown');
+        loadData('experienceLevel', 'experienceLevelDropdown');
+        loadData('employmentType', 'employmentTypeDropdown');
+        loadData('workSetting', 'workSettingDropdown');
+        loadData('companyLocation', 'companyLocationDropdown');
+        loadData('companySize', 'companySizeDropdown');
+
+        function fetchImage(url, imageElementId) {
+            fetch(url)
+            .then(response => response.blob())
+            .then(imageBlob => {
+                // Convert the blob to a URL and set it as the source of the img element
+                const imageUrl = URL.createObjectURL(imageBlob);
+                const imgElement = document.getElementById(imageElementId);
+                imgElement.src = imageUrl;
+                imgElement.style.display = 'block';
+            })
+            .catch(error => console.error('Error:', error));
+        }
+        
+        function loadData(endpoint, dropdownId) {
+            fetch(`http://localhost:8000/${endpoint}`)
+            .then(response => response.json())
+            .then(data => {
+                let dropdown = document.getElementById(dropdownId);
+                data.forEach(function(item) {
+                    let option = document.createElement('option');
+                    option.value = item;
+                    option.textContent = item;
+                    dropdown.appendChild(option);
+                });
+            })
+            .catch(error => console.error('Error:', error));
+        }
+
+        let globalPrediction = null;
+        // Event listener for the "Get Estimate" button
+        document.getElementById('getEstimateButton').addEventListener('click', function() {
+            // setting ids
+            let dropdownIds = [
+                'workYearDropdown', 'jobCategoryDropdown',
+                'employeeResidenceDropdown', 'experienceLevelDropdown',
+                'employmentTypeDropdown', 'workSettingDropdown',
+                'companyLocationDropdown', 'companySizeDropdown'
+            ];
+
+            let selectedData = dropdownIds.reduce((acc, id) => {
+                            let key = id.replace('Dropdown', ''); // Remove 'Dropdown' from id to create key
+                            acc[key] = document.getElementById(id).value;
+                            return acc;
+                        }, {});
+
+            // Retrieve values from each dropdown
+            let selectedValues = {
+                workYear: document.getElementById('workYearDropdown').value,
+                //jobTitle: document.getElementById('jobTitleDropdown').value,
+                jobCategory: document.getElementById('jobCategoryDropdown').value,
+                employeeResidence: document.getElementById('employeeResidenceDropdown').value,
+                experienceLevel: document.getElementById('experienceLevelDropdown').value,
+                employmentType: document.getElementById('employmentTypeDropdown').value,
+                workSetting: document.getElementById('workSettingDropdown').value,
+                companyLocation: document.getElementById('companyLocationDropdown').value,
+                companySize: document.getElementById('companySizeDropdown').value
+            };
+
+            // Send POST request with selected data as JSON
+            fetch('http://localhost:8000/predict', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+                body: JSON.stringify(selectedData)
+            })
+            .then(response => response.json())
+            .then(data => {
+                // Process and display the response data
+            globalPrediction = JSON.parse(data.prediction);
+            document.getElementById('responseArea').textContent = 'Salary Prediction: $' + globalPrediction + ' USD';
+                // console.log(data);
+            })
+            .catch(error => {
+                console.error('Error:', error);
+            });
+            });     
+
+            // Event listener for "VisualizeButton"
+            document.getElementById('visualizeButton').addEventListener('click', function() {
+            if (globalPrediction === null) {
+                alert("Please get a salary estimate first.");
+                return;
+            }
+
+            let companyLocation = document.getElementById('companyLocationDropdown').value;
+            let jobCategory = document.getElementById('jobCategoryDropdown').value;
+
+            fetchImage(`http://localhost:8000/locationVsalary?company_location=${companyLocation}&predicted_salary=${globalPrediction}`, 'locationVsalaryImage');
+            fetchImage(`http://localhost:8000/categoryVusd?category=${jobCategory}&predicted_salary=${globalPrediction}`, 'categoryVusdImage');
+            fetchImage(`http://localhost:8000/salaryDistrib?predicted_salary=${globalPrediction}`, 'salaryDistribImage');
+            });
+
+            // Login
+            document.getElementById('loginButton').addEventListener('click', function() {
+            var userName = document.getElementById('userName').value;
+            var passCode = document.getElementById('passCode').value;
+            fetch('http://localhost:8000/login', {
+                method: 'GET',
+                headers: {
+                    'userName': userName,
+                    'passCode': passCode
+                }
+            })
+            .then(response => response.json())
+            .then(data => {
+                if (data.status === 0) {
+                    // Login successful
+                    document.getElementById('loginArea').style.display = 'none';
+                    document.getElementById('appContent').style.display = 'block';
+                } else {
+                    // Login failed
+                    alert('Login failed, please try again.');
+                }
+            })
+            .catch(error => {
+                console.error('Error:', error);
+                alert('An error occurred while logging in.');
+            });
+            });
+
+
+    };
+
+</script>
+</body>
+</html>

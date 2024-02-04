@@ -1,0 +1,45 @@
+## Welcome to the Estimator User Guide! 
+
+This guide serves to help a user who has already
+Installed the application dependencies login and
+get started.
+
+NOTE:   If you have not previously gone through
+	the QuickStart.txt file please do so 
+	before continuing as the program
+	will not work until dependencies have
+	been installed and launched.
+
+
+# Step 1 WINDOWS | LAUNCH PROGRAM:
+	- Navigate to the downloaded file:
+	  'Salary_Estimator_Dist.zip'
+	- Unzip
+	- Double click 'Launcher_Windows.bat'
+	- SUCCESS! Move to Step 2
+
+# Step 1 MAC/LINUX | LAUNCH PROGRAM:
+	- Navigate to the downloaded file:
+	  'Salary_Estimator_Dist.zip'
+	- Unzip & enter the unzipped folder
+	- Open a terminal window at this location
+	- Enter this command excluding quotes:
+	  './Launcher_Linux_Mac.sh'
+	- SUCCESS! More to Step 2
+
+# Step 2 | LOGIN:
+	- Enter the following credentials:
+	  username: 'guest'
+	  password: 'guest'
+
+# Step 3 | SUCCESS:
+	- Select your desired options from the 
+	  dropdown menu and click 'Get Estimate'
+	- After getting an estimate, to see 
+	  visualizations click
+	  'Visualize Prediction'
+
+
+Feel free to repeat as many times as you want once
+The application is running. Have fun exploring the
+Different combinations & visualizations!

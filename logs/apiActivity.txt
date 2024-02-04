@@ -1,0 +1,76 @@
+MSG   |  13:35:58  |  Menus Updated
+MSG   |  13:35:58  |  Server Boot Success
+MSG   |  16:08:04  |  Menus Updated
+MSG   |  16:08:04  |  Server Boot Success
+MSG   |  16:11:24  |  Menus Updated
+MSG   |  16:11:24  |  Server Boot Success
+MSG   |  16:14:46  |  Menus Updated
+MSG   |  16:14:46  |  Server Boot Success
+MSG   |  16:16:22  |  Menus Updated
+MSG   |  16:16:22  |  Server Boot Success
+MSG   |  16:18:17  |  Menus Updated
+MSG   |  16:18:17  |  Server Boot Success
+MSG   |  16:26:22  |  Menus Updated
+MSG   |  16:26:22  |  Server Boot Success
+MSG   |  16:26:55  |  Menus Updated
+MSG   |  16:26:55  |  Server Boot Success
+MSG   |  16:28:50  |  Menus Updated
+MSG   |  16:28:50  |  Server Boot Success
+MSG   |  16:29:17  |  Menus Updated
+MSG   |  16:29:17  |  Server Boot Success
+MSG   |  16:33:03  |  Menus Updated
+MSG   |  16:33:03  |  Server Boot Success
+MSG   |  16:34:51  |  Menus Updated
+MSG   |  16:34:51  |  Server Boot Success
+MSG   |  20:11:52  |  Menus Updated
+MSG   |  20:11:52  |  Server Boot Success
+MSG   |  20:20:38  |  Menus Updated
+MSG   |  20:20:38  |  Server Boot Success
+MSG   |  20:25:29  |  Menus Updated
+MSG   |  20:25:29  |  Server Boot Success
+MSG   |  20:41:53  |  Menus Updated
+MSG   |  20:41:53  |  Server Boot Success
+MSG   |  20:44:09  |  Menus Updated
+MSG   |  20:44:09  |  Server Boot Success
+MSG   |  20:47:18  |  Menus Updated
+MSG   |  20:47:18  |  Server Boot Success
+MSG   |  20:49:41  |  Menus Updated
+MSG   |  20:49:41  |  Server Boot Success
+MSG   |  20:51:41  |  Menus Updated
+MSG   |  20:51:41  |  Server Boot Success
+MSG   |  21:01:59  |  Menus Updated
+MSG   |  21:01:59  |  Server Boot Success
+MSG   |  21:15:52  |  Menus Updated
+MSG   |  21:15:52  |  Server Boot Success
+MSG   |  21:32:43  |  Menus Updated
+MSG   |  21:32:43  |  Server Boot Success
+MSG   |  21:44:36  |  Menus Updated
+MSG   |  21:44:36  |  Server Boot Success
+MSG   |  21:47:02  |  Menus Updated
+MSG   |  21:47:03  |  Server Boot Success
+MSG   |  21:48:13  |  Menus Updated
+MSG   |  21:48:13  |  Server Boot Success
+MSG   |  21:52:46  |  Menus Updated
+MSG   |  21:52:46  |  Server Boot Success
+MSG   |  21:53:59  |  Menus Updated
+MSG   |  21:53:59  |  Server Boot Success
+MSG   |  21:54:58  |  Menus Updated
+MSG   |  21:54:58  |  Server Boot Success
+MSG   |  21:57:20  |  Menus Updated
+MSG   |  21:57:20  |  Server Boot Success
+MSG   |  21:58:16  |  Menus Updated
+MSG   |  21:58:16  |  Server Boot Success
+MSG   |  21:59:02  |  Menus Updated
+MSG   |  21:59:02  |  Server Boot Success
+MSG   |  21:59:40  |  Menus Updated
+MSG   |  21:59:40  |  Server Boot Success
+MSG   |  22:00:36  |  Menus Updated
+MSG   |  22:00:36  |  Server Boot Success
+MSG   |  22:05:48  |  Menus Updated
+MSG   |  22:05:48  |  Server Boot Success
+MSG   |  22:20:16  |  Menus Updated
+MSG   |  22:20:16  |  Server Boot Success
+MSG   |  22:44:13  |  Menus Updated
+MSG   |  22:44:13  |  Server Boot Success
+MSG   |  12:34:46  |  Menus Updated
+MSG   |  12:34:46  |  Server Boot Success
