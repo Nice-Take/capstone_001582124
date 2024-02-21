@@ -28,6 +28,6 @@ The goal of this project was to assist in estimating salaries in various parts o
 One of the unique aspects of this project was that it was experimenting using HTMX. This allows content updates without the use of a heavy front-end framework or losing scroll state.
 
 ![Solar-Powered Camera System](https://github.com/Nice-Take/capstone_001582124/blob/master/visualizations/fullApp_Italy_ML_Engineer.jpg)
-*Caption: A Machine Learning Engineer in Italy.*
+*Caption: A Machine Learning Engineer Living in Russia working in Italy.*
 
 
