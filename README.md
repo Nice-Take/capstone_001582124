@@ -1,5 +1,4 @@
-## Anthony Mascari | ML Sample Project ##
-This project was created as a capstone project over the course of two to three days.
+## Anthony Mascari | ML Project ##
 
 - The model was created using XGBoost.
 - Visualizations were created using matplot/seaborn.
